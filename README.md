@@ -1,4 +1,4 @@
 ## Frontend exam
-- [clone repo]
-- [RUN npm install]
-- [RUN npm start]
+1. clone repo
+2. RUN npm install
+3. RUN npm start
