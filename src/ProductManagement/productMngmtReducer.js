@@ -7,6 +7,7 @@ const initiateState = {
 export default (state=initiateState, action) => {
 	switch(action.type){
         case 'SET_ALL_PHOTOS':
+			console.log(action.data)
             return state = {...state, photos: action.data};
 					
 		case 'SET_PHOTO':

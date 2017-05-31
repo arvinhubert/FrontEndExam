@@ -65,9 +65,9 @@ const photos = [
 ];
 
 
-export function getFeaturedPhotos(){
+ function getFeaturedPhotos(){
     return dispatch => {
-		const features = photos.filter((photo)=> photo.featured === true);
+		const features = photos.filter((photo)=> photo.featured == true);
       
         dispatch({
             type: 'SET_FEATURED_PHOTOS',
@@ -80,7 +80,7 @@ export function getFeaturedPhotos(){
 
 }
 
-export function getAllPhotos(){
+ function getAllPhotos(){
     return dispatch => {
       
         let sorted = photos.sort(function(a,b){
@@ -98,7 +98,7 @@ export function getAllPhotos(){
     }
 }
 
-export function createPhoto(params){
+ function createPhoto(params){
     let dateNow =  Date.now();
     let data = {...params, id: dateNow, date_created: dateNow};
     photos.push(data);
@@ -114,7 +114,7 @@ export function createPhoto(params){
         
     }
 }
-export function deletePhoto(id){
+ function deletePhoto(id){
     return dispatch => {
         //let deleted = photos.filter((photo, i)=>{
          //  return photo.id !== id;
@@ -136,13 +136,39 @@ export function deletePhoto(id){
     }
 }
 
-export function getPhoto(id){
+ function getPhoto(id){
     return dispatch => {
         let photo = photos.filter((photo)=> photo.id === id);
         dispatch({
             type:'SET_PHOTO',
             data: photo
         })
-    
+       
+       
     }
 }
+
+ function updatePhoto(id, params){
+    
+    return dispatch => {   
+        photos.forEach((photo, i)=>{
+            if(photo.id === id){
+            
+                photos[i].description = params.description;
+                photos[i].name = params.name;
+                photos[i].photo = params.photo;
+                photos[i].featured = params.featured;
+                
+            }
+
+           
+        })
+        dispatch({
+                type: "SET_ALL_PHOTOS",
+                data: photos
+            })
+           
+            
+    }
+}
+export {updatePhoto, getPhoto, deletePhoto, createPhoto, getAllPhotos, getFeaturedPhotos};
